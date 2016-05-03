@@ -26,7 +26,7 @@ minimal() {
  
   ###################################
   # Docker
-  printf "${BLUE}Installing Docker, docker-machine and docker-compose...${NORMAL}\n"
+  printf "${BLUE}Installing docker-engine; docker-machine and docker-compose...${NORMAL}\n"
   
   # Docker Engine
   printf "${BLUE}Installing docker-engine...${NORMAL}\n"
