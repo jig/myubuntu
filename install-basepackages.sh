@@ -33,7 +33,9 @@ basepackages() {
     emacs-nox \
     byobu \
     openssh-server \
-    openssh-client
+    openssh-client \
+    htop \
+    build-essential
 }
 
 # Check if reboot is needed

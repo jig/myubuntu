@@ -76,6 +76,7 @@ EOF
   go get -u github.com/tpng/gopkgs
   go get -u github.com/newhook/go-symbols
   go get -u golang.org/x/tools/cmd/guru
+  go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
 }
 
 # Check if reboot is needed

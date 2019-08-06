@@ -26,7 +26,7 @@ install_kops() {
  
   ###################################
   # kubectl & kops
-  printf "${BLUE}Installing Nodejs...${NORMAL}\n"
+  printf "${BLUE}Installing kubectl and kops...${NORMAL}\n"
   sudo apt-get -y install curl
   curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
   chmod +x ./kubectl
@@ -37,6 +37,15 @@ install_kops() {
   curl -LO https://github.com/kubernetes/kops/releases/download/1.7.0/kops-linux-amd64
   chmod +x ./kops-linux-amd64
   sudo mv ./kops-linux-amd64 /usr/local/bin/kops
+
+  # helm
+  printf "${BLUE}Installing helm...${NORMAL}\n"
+  sudo snap install helm --classic
+
+  # kind
+  printf "${BLUE}Installing kind (kubernetes in docker)...${NORMAL}\n"
+  cd /tmp
+  GO111MODULE="on" go get sigs.k8s.io/kind@v0.4.0
 }
 
 # Check if reboot is needed
