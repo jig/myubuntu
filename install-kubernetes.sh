@@ -46,9 +46,10 @@ install_kops() {
   # kind
   # this requires go
   printf "${BLUE}Installing kind (kubernetes in docker)...${NORMAL}\n"
-  source $HOME/.bashrc
-  if command -v go; then
-    GO111MODULE="on" go get sigs.k8s.io/kind@v0.4.0
+  # We use the go command whis way, because if installed with another scripts,
+  # it may not be in the PATH yet
+  if ls $HOME/go/bin/go > /dev/null; then
+    GO111MODULE="on" $HOME/go/bin/go get sigs.k8s.io/kind@v0.4.0
   else
     printf "${YELLOW}kind could not be installed because go command is not found${NORMAL}\n"
   fi
