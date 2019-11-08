@@ -24,6 +24,7 @@ unattended-upgrades() {
   # which may fail on systems lacking tput or terminfo
   set -e
  
+  printf "${BLUE}Installing unattended-upgrades package...${NORMAL}\n"
   # Install unattended-upgrades package
   sudo apt-get install -y unattended-upgrades
 
