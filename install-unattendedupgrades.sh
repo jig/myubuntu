@@ -34,13 +34,9 @@ unattended-upgrades() {
   sudo sed -i 's#^//Unattended-Upgrade::MailOnlyOnError "true";#Unattended-Upgrade::MailOnlyOnError "true";#g' /etc/apt/apt.conf.d/50unattended-upgrades
 
   # Enable unattended upgrades 
-  if [[ $(cat /etc/apt/apt.conf.d/20auto-upgrades | wc -l) -le 2 ]]; then
-     sudo bash -c "echo 'APT::Periodic::Download-Upgradeable-Packages "1";' >> /etc/apt/apt.conf.d/20auto-upgrades"
-  fi
-  if [[ $(cat /etc/apt/apt.conf.d/20auto-upgrades | wc -l) -le 3 ]]; then
-    sudo bash -c "echo 'APT::Periodic::AutocleanInterval "7";' >> /etc/apt/apt.conf.d/20auto-upgrades"
-  fi
-  
+  sudo bash -c "echo 'APT::Periodic::Download-Upgradeable-Packages "1";' >> /etc/apt/apt.conf.d/20auto-upgrades"
+  sudo bash -c "echo 'APT::Periodic::AutocleanInterval "7";' >> /etc/apt/apt.conf.d/20auto-upgrades"
+ 
   # Test the package
   sudo unattended-upgrades --dry-run --debug
 }
