@@ -29,47 +29,47 @@ everything() {
   # sudo sed -i "s@/es.@/us.@" /etc/apt/sources.list
 
   # Install begins
-  BRANCH="feature/addUnattendedUpgrades"
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-distroupdate.sh -O -)"
+  BRANCH="master"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-distroupdate.sh -O -)"
   
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-basepackages.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-basepackages.sh -O -)"
   
   # git+minimal config
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-git.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-git.sh -O -)"
 
   # emacs+minimal go syntax highlighting
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-emacs.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-emacs.sh -O -)"
   
   # Byobu+ZSH
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-byobu.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-byobu.sh -O -)"
   
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-powerlinefonts.sh -O -)"
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-golang.sh -O -)"
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-awscli.sh -O -)"
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-kubernetes.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-powerlinefonts.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-golang.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-awscli.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-kubernetes.sh -O -)"
   
   # Ruby+Panoràmix
-  # bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-panoramix.sh -O -)"
+  # bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-panoramix.sh -O -)"
   
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-visualstudiocode.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-visualstudiocode.sh -O -)"
 
   # nodejs
-  # bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-nodejs.sh -O -)"
+  # bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-nodejs.sh -O -)"
   
   # Docker, Docker Compose, Docker Machine
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-docker.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-docker.sh -O -)"
   
   # Java
-  # bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-java.sh -O -)"
+  # bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-java.sh -O -)"
   
   # Google Chrome
-  # bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-chrome.sh -O -)"
+  # bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-chrome.sh -O -)"
 
   # Unattended Upgrades
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-unattendedupgrades.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-unattendedupgrades.sh -O -)"
   
   # ZSH+Oh-my-ZSH
-  bash -c "$(wget https://raw.githubusercontent.com/aalcaraz97/myubuntu/$BRANCH/install-zsh.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-zsh.sh -O -)"
 
   # Final recommendations
   printf "${YELLOW}Installation finished. A REBOOT is recommended now.${NORMAL}\n"
