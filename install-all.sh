@@ -64,6 +64,9 @@ everything() {
   
   # Google Chrome
   # bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-chrome.sh -O -)"
+
+  # Unattended Upgrades
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-unattendedupgrades.sh -O -)"
   
   # ZSH+Oh-my-ZSH
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-zsh.sh -O -)"
