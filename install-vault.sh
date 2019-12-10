@@ -34,5 +34,4 @@ install-vault() {
   vault version
 }
 
-# Check if reboot is needed
 install-vault
