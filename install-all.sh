@@ -67,6 +67,9 @@ everything() {
 
   # Unattended Upgrades
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-unattendedupgrades.sh -O -)"
+
+  # Vault
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-vault.sh -O -)"
   
   # ZSH+Oh-my-ZSH
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-zsh.sh -O -)"
