@@ -1,4 +1,4 @@
-install-vault() {
+install_vault() {
   # Use colors, but only if connected to a terminal, and that terminal
   # supports them.
   if which tput >/dev/null 2>&1; then
@@ -34,4 +34,4 @@ install-vault() {
   vault version
 }
 
-install-vault
+install_vault
