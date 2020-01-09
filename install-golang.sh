@@ -39,16 +39,16 @@ golang() {
 
   if [ -e ~/.bashrc ]; then
     grep -qxF 'export GOPATH=$HOME/git' .bashrc || echo 'export GOPATH=$HOME/git'>> .bashrc
-    grep -qxF 'export GOROOT=\$HOME/go' .bashrc || echo 'export GOROOT=\$HOME/go'>> .bashrc
-    grep -qxF 'export PATH=\$PATH:\$GOPATH/bin:\$GOROOT/bin' .bashrc \
-    || echo 'export PATH=\$PATH:\$GOPATH/bin:\$GOROOT/bin'>> .bashrc
+    grep -qxF 'export GOROOT=$HOME/go' .bashrc || echo 'export GOROOT=$HOME/go'>> .bashrc
+    grep -qxF 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' .bashrc \
+    || echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin'>> .bashrc
   fi
 
   if [ -e $HOME/.zshrc ]; then
     grep -qxF 'export GOPATH=$HOME/git' .zshrc || echo 'export GOPATH=$HOME/git'>> .zshrc
-    grep -qxF 'export GOROOT=\$HOME/go' .zshrc || echo 'export GOROOT=\$HOME/go'>> .zshrc
-    grep -qxF 'export PATH=\$PATH:\$GOPATH/bin:\$GOROOT/bin' .zshrc \
-    || echo 'export PATH=\$PATH:\$GOPATH/bin:\$GOROOT/bin'>> .zshrc
+    grep -qxF 'export GOROOT=$HOME/go' .zshrc || echo 'export GOROOT=$HOME/go'>> .zshrc
+    grep -qxF 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' .zshrc \
+    || echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin'>> .zshrc
   fi
 
   export GOPATH=$HOME/git
@@ -58,6 +58,15 @@ golang() {
   # Disable the use of the Google Golang Proxy and Google Database Checksum
   go env -w GOPROXY=direct
   go env -w GOSUMDB=off
+
+  # Install Delve Debugger
+  printf "${BLUE}Installing Delve Debugger...${NORMAL}\n"
+  go get -u github.com/go-delve/delve/cmd/dlv
+
+  # Install debugging, testing, linting tools
+  printf "${BLUE}Installing some Go tools...${NORMAL}\n"
+  go get -u sourcegraph.com/sqs/goreturns
+  wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.22.2
 }
 
 golang
