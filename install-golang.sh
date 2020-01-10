@@ -1,3 +1,7 @@
+warning() {
+    printf "\033[0;33m$@\033[0m\n"
+}
+
 golang() {
   # Use colors, but only if connected to a terminal, and that terminal
   # supports them.
@@ -27,57 +31,44 @@ golang() {
   ###################################
   # Golang
 
-  VERSION=1.13.3
+  VERSION=1.13.6
 
   printf "${BLUE}Installing Go...${NORMAL}\n"
   wget https://storage.googleapis.com/golang/go$VERSION.linux-amd64.tar.gz -O /tmp/golang.tgz
   tar -C $HOME -xzf /tmp/golang.tgz 
 
   if [ -e ~/.bashrc ]; then
-      cat >> $HOME/.bashrc <<EOF
-export GOPATH=\$HOME/git
-export GOROOT=\$HOME/go
-export PATH=\$PATH:\$GOPATH/bin:\$GOROOT/bin
-EOF
+    grep -qxF 'export GOPATH=$HOME/git' .bashrc || echo 'export GOPATH=$HOME/git'>> .bashrc
+    grep -qxF 'export GOROOT=$HOME/go' .bashrc || echo 'export GOROOT=$HOME/go'>> .bashrc
+    grep -qxF 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' .bashrc \
+    || echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin'>> .bashrc
   fi
 
   if [ -e $HOME/.zshrc ]; then
-      cat >> $HOME/.zshrc <<EOF
-export GOPATH=\$HOME/git
-export GOROOT=\$HOME/go
-export PATH=\$PATH:\$GOPATH/bin:\$GOROOT/bin
-EOF
+    grep -qxF 'export GOPATH=$HOME/git' .zshrc || echo 'export GOPATH=$HOME/git'>> .zshrc
+    grep -qxF 'export GOROOT=$HOME/go' .zshrc || echo 'export GOROOT=$HOME/go'>> .zshrc
+    grep -qxF 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' .zshrc \
+    || echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin'>> .zshrc
   fi
 
   export GOPATH=$HOME/git
   export GOROOT=$HOME/go
   export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 
-  # Install stringer (for //go:generate -> https://blog.golang.org/generate)
-  go get golang.org/x/tools/cmd/stringer
+  # Disable the use of the Google Golang Proxy and Google Database Checksum
+  go env -w GOPROXY=direct
+  go env -w GOSUMDB=off
 
   # Install Delve Debugger
   printf "${BLUE}Installing Delve Debugger...${NORMAL}\n"
-  go get github.com/derekparker/delve/cmd/dlv
+  go get -u github.com/go-delve/delve/cmd/dlv
 
-  # Install GoMetaLinter
-  printf "${BLUE}Installing GoMetaLinter...${NORMAL}\n"
-  go get -u github.com/alecthomas/gometalinter
-  gometalinter --install --update 
-
-  # Install debugging, testing, linting tools (Meet Visual Studio Code 1.0.0 requirements)
+  # Install debugging, testing, linting tools
   printf "${BLUE}Installing some Go tools...${NORMAL}\n"
-  go get -u github.com/mdempsky/gocode
-  go get -u github.com/rogpeppe/godef
-  go get -u golang.org/x/lint/golint
-  go get -u github.com/lukehoban/go-outline
   go get -u sourcegraph.com/sqs/goreturns
-  go get -u golang.org/x/tools/cmd/gorename
-  go get -u github.com/tpng/gopkgs
-  go get -u github.com/newhook/go-symbols
-  go get -u golang.org/x/tools/cmd/guru
-  go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+  wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.22.2
 }
 
-# Check if reboot is needed
 golang
+warning "WARN: Log out from the session to load Go binary"
+
