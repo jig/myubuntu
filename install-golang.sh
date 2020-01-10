@@ -31,7 +31,7 @@ golang() {
   ###################################
   # Golang
 
-  VERSION=1.13.5
+  VERSION=1.13.6
 
   printf "${BLUE}Installing Go...${NORMAL}\n"
   wget https://storage.googleapis.com/golang/go$VERSION.linux-amd64.tar.gz -O /tmp/golang.tgz
