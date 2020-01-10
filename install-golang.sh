@@ -37,18 +37,18 @@ golang() {
   wget https://storage.googleapis.com/golang/go$VERSION.linux-amd64.tar.gz -O /tmp/golang.tgz
   tar -C $HOME -xzf /tmp/golang.tgz 
 
-  if [ -e ~/.bashrc ]; then
-    grep -qxF 'export GOPATH=$HOME/git' .bashrc || echo 'export GOPATH=$HOME/git'>> .bashrc
-    grep -qxF 'export GOROOT=$HOME/go' .bashrc || echo 'export GOROOT=$HOME/go'>> .bashrc
-    grep -qxF 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' .bashrc \
-    || echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin'>> .bashrc
+  if [ -e $HOME/.bashrc ]; then
+    grep -qxF 'export GOPATH=$HOME/git' $HOME/.bashrc || echo 'export GOPATH=$HOME/git'>> $HOME/.bashrc
+    grep -qxF 'export GOROOT=$HOME/go' $HOME/.bashrc || echo 'export GOROOT=$HOME/go'>> $HOME/.bashrc
+    grep -qxF 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' $HOME/.bashrc \
+    || echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin'>> $HOME/.bashrc
   fi
 
   if [ -e $HOME/.zshrc ]; then
-    grep -qxF 'export GOPATH=$HOME/git' .zshrc || echo 'export GOPATH=$HOME/git'>> .zshrc
-    grep -qxF 'export GOROOT=$HOME/go' .zshrc || echo 'export GOROOT=$HOME/go'>> .zshrc
-    grep -qxF 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' .zshrc \
-    || echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin'>> .zshrc
+    grep -qxF 'export GOPATH=$HOME/git' $HOME/.zshrc || echo 'export GOPATH=$HOME/git'>> $HOME/.zshrc
+    grep -qxF 'export GOROOT=$HOME/go' $HOME/.zshrc || echo 'export GOROOT=$HOME/go'>> $HOME/.zshrc
+    grep -qxF 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' $HOME/.zshrc \
+    || echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin'>> $HOME/.zshrc
   fi
 
   export GOPATH=$HOME/git
@@ -66,6 +66,7 @@ golang() {
   # Install debugging, testing, linting tools
   printf "${BLUE}Installing some Go tools...${NORMAL}\n"
   go get -u sourcegraph.com/sqs/goreturns
+  cd $HOME
   wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.22.2
 }
 
