@@ -49,9 +49,9 @@ install_kops() {
   # We use the go command this way, because if installed with another scripts,
   # it may not be in the PATH yet
   if which go; then
-    GO111MODULE="on" go get sigs.k8s.io/kind@v0.4.0
+    GO111MODULE="on" go get sigs.k8s.io/kind@v0.5.1
   elif ls $HOME/go/bin/go > /dev/null; then
-    GO111MODULE="on" $HOME/go/bin/go get sigs.k8s.io/kind@v0.4.0
+    GO111MODULE="on" $HOME/go/bin/go get sigs.k8s.io/kind@v0.5.1
   else
     printf "${YELLOW}kind could not be installed because go command is not found${NORMAL}\n"
   fi
