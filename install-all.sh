@@ -74,6 +74,9 @@ everything() {
   # ZSH+Oh-my-ZSH
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-zsh.sh -O -)"
 
+  # SSH config
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-sshconfig.sh -O -)"
+
   # Final recommendations
   printf "${YELLOW}Installation finished. A REBOOT is recommended now.${NORMAL}\n"
 }
