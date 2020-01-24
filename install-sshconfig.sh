@@ -34,6 +34,15 @@ install_sshconfig() {
     grep -qxF 'ControlMaster auto' $HOME/.ssh/config || echo 'ControlMaster auto'>> $HOME/.ssh/config
     grep -qxF 'ControlPath ~/.ssh/%C' $HOME/.ssh/config || echo 'ControlPath ~/.ssh/%C'>> $HOME/.ssh/config
     grep -qxF 'ControlPersist 600' $HOME/.ssh/config || echo 'ControlPersist 600'>> $HOME/.ssh/config
+  else
+    cat > $HOME/.ssh/config <<EOF
+ServerAliveInterval 60
+ServerAliveCountMax 3
+TCPKeepAlive yes
+ControlMaster auto
+ControlPath ~/.ssh/%C
+ControlPersist 600
+EOF
   fi
 }
 
