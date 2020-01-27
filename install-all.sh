@@ -74,6 +74,9 @@ everything() {
   # ZSH+Oh-my-ZSH
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-zsh.sh -O -)"
 
+  # Terraform
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-terraform.sh -O -)"
+
   # SSH config
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-sshconfig.sh -O -)"
 
