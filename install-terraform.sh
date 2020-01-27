@@ -26,7 +26,7 @@ install_terraform() {
 
   printf "${BLUE}Installing Terraform...${NORMAL}\n"
   # Install Terraform
-  wget https://releases.hashicorp.com/terraform/0.12.18/terraform_0.12.18_linux_amd64.zip -O /tmp/terraform.zip
+  wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip -O /tmp/terraform.zip
   unzip -d /tmp /tmp/terraform.zip
   sudo mv /tmp/terraform /usr/bin
 
