@@ -44,7 +44,12 @@ everything() {
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-byobu.sh -O -)"
   
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-powerlinefonts.sh -O -)"
+  
+  # Golang
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-golang.sh -O -)"
+  # -- Make the changes done in .bashrc (specially GOPATH) available to the rest of scripts
+  [ -e $HOME/.bashrc ] && . $HOME/.bashrc
+
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-awscli.sh -O -)"
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-kubernetes.sh -O -)"
   
