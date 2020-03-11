@@ -29,7 +29,7 @@ everything() {
   # sudo sed -i "s@/es.@/us.@" /etc/apt/sources.list
 
   # Install begins
-  BRANCH="feature/go1.14"
+  BRANCH="master"
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-distroupdate.sh -O -)"
   
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-basepackages.sh -O -)"
