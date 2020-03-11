@@ -68,7 +68,7 @@ golang() {
   printf "${BLUE}Installing some Go tools...${NORMAL}\n"
   go get -u sourcegraph.com/sqs/goreturns
   cd $HOME
-  wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.22.2
+  wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.23.7
 }
 
 golang
