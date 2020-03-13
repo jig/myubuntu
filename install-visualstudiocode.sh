@@ -40,20 +40,54 @@ vsc() {
   if [ ! -e ~/.vscode/settings.json ]; then
       cat > ~/.vscode/settings.json <<EOF
 {
-    "go.buildOnSave": true,
-    "go.lintOnSave": true,
-    "go.vetOnSave": true,
+    // Editor
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    // Terminal
+    "terminal.integrated.fontFamily": "Ubuntu Mono derivative Powerline",
+    "terminal.integrated.fontSize": 17,
+    // Go
+    "go.lintOnSave": "workspace",
+    "go.vetOnSave": "workspace",
     "go.buildTags": "",
     "go.buildFlags": [],
     "go.lintFlags": [],
     "go.vetFlags": [],
     "go.coverOnSave": false,
     "go.useCodeSnippetsOnFunctionSuggest": false,
-    "go.formatOnSave": true,
     "go.formatTool": "goreturns",
     "go.goroot": "~/go",
     "go.gopath": "~/git",
-    "go.gocodeAutoBuild": false
+    "go.toolsEnvVars": {
+      "GO111MODULE": "on",
+    },
+    "go.gocodeAutoBuild": false,
+    // Markdown
+    "markdown-toc.insertAnchor": true,
+    "markdown-toc.anchorMode": "bitbucket.org",
+    "markdown-toc.depthFrom": 2,
+    "markdown-toc.depthTo": 3,
+    "markdownlint.config": {
+      "default": true,
+      "MD007": { "indent": 4 },
+      "MD033": false,
+      "MD036": false,
+      "MD035": {
+        "style": "---"
+      }
+    },
+    "[markdown]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.tabSize": 4,
+      "editor.formatOnSave": false
+    },
+    // YAML
+    "yaml.format.bracketSpacing": false,
+    // Disable telemetry
+    "gitlens.advanced.telemetry.enabled": false,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false
 }
 EOF
     fi
