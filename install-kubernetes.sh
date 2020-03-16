@@ -36,7 +36,10 @@ install_kops() {
 
   # helm
   printf "${BLUE}Installing helm...${NORMAL}\n"
-  sudo snap install helm --classic
+  wget https://get.helm.sh/helm-v3.0.2-linux-amd64.tar.gz
+  tar -zxvf helm-v3.0.2-linux-amd64.tar.gz -C /tmp
+  sudo mv /tmp/linux-amd64/helm /usr/local/bin/helm
+  sudo chmod +x /usr/local/bin/helm
 
   # eksctl
   printf "${BLUE}Installing eksctl...${NORMAL}\n"
