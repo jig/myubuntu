@@ -25,13 +25,15 @@ awscli() {
   set -e
 
   printf "${BLUE}Installing AWS CLI...${NORMAL}\n"
-  sudo apt-get -y install unzip python
-  curl -JL "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" > /tmp/awscli-bundle.zip
-  unzip /tmp/awscli-bundle.zip -d /tmp
-  sudo /tmp/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+  sudo apt-get -y install unzip python3
+  curl -JL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+  unzip /tmp/awscliv2.zip -d /tmp
+  sudo /tmp/aws/install
   printf "${GREEN}"
   /usr/local/bin/aws --version
   printf "${NORMAL}\n"
+
+  unzip awscliv2.zip
 }
 
 awscli
