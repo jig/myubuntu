@@ -27,7 +27,7 @@ vsc() {
   ###################################
   # Visual Studio Code (Microsoft)
   printf "${BLUE}Installing Visual Studio Code (Microsoft)...${NORMAL}\n"
-  sudo apt-get -y install git libgtk2.0-0 libgconf-2-4 libasound2 libnss3 libxtst6 gtk-chtheme light-themes 
+  sudo apt-get -y install git libgtk2.0-0 libgconf-2-4 libasound2 libnss3 libxtst6 gtk-chtheme light-themes fonts-firacode
   
   # get last version of Visual Studio Code:
   wget https://go.microsoft.com/fwlink/?LinkID=760868 -O /tmp/vscode-amd64.deb
