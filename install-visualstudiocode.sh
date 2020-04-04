@@ -27,23 +27,25 @@ vsc() {
   ###################################
   # Visual Studio Code (Microsoft)
   printf "${BLUE}Installing Visual Studio Code (Microsoft)...${NORMAL}\n"
-  sudo apt-get -y install git libgtk2.0-0 libgconf-2-4 libasound2 libnss3 libxtst6 gtk-chtheme light-themes
+  sudo apt-get -y install git libgtk2.0-0 libgconf-2-4 libasound2 libnss3 libxtst6 gtk-chtheme light-themes 
   
   # get last version of Visual Studio Code:
   wget https://go.microsoft.com/fwlink/?LinkID=760868 -O /tmp/vscode-amd64.deb
   sudo dpkg -i /tmp/vscode-amd64.deb
 
-  if [ ! -d ~/.vscode ]; then
-      mkdir ~/.vscode
+  if [ ! -d ~/.config/Code/User ]; then
+      mkdir -p ~/.config/Code/User
   fi
 
-  if [ ! -e ~/.vscode/settings.json ]; then
-      cat > ~/.vscode/settings.json <<EOF
+  if [ ! -e ~/.config/Code/User/settings.json ]; then
+      cat > ~/.config/Code/User/settings.json <<EOF
 {
     // Editor
     "editor.tabSize": 2,
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
+    "editor.fontFamily": "'Fira Code'",
+    "editor.fontLigatures": true,
     // Terminal
     "terminal.integrated.fontFamily": "Ubuntu Mono derivative Powerline",
     "terminal.integrated.fontSize": 17,
@@ -92,8 +94,8 @@ vsc() {
 EOF
     fi
 
-    if [ ! -e ~/.vscode/launch.json ]; then
-      cat > ~/.vscode/launch.json <<EOF
+    if [ ! -e ~/.config/Code/User/launch.json ]; then
+      cat > ~/.config/Code/User/launch.json <<EOF
 {
     "version": "0.2.0",
     "configurations": [
