@@ -85,6 +85,9 @@ everything() {
   # SSH config
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-sshconfig.sh -O -)"
 
+  # Swagger
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-swagger.sh -O -)"
+
   # Final recommendations
   printf "${YELLOW}Installation finished. A REBOOT is recommended now.${NORMAL}\n"
 }
