@@ -31,4 +31,3 @@ install_awsadfs() {
 }
 
 install_awsadfs
-
