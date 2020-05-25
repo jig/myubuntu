@@ -2,7 +2,7 @@
 
 Sets up my Ubuntu Desktop System (works both on 18.04 LTS and 20.04 LTS)
 
-To execute it, you must login with your username (must be sudoer) to a **clean** Ubuntu 18.04 Desktop installation.
+To execute it, you must login with your username (must be sudoer) to a **clean** Ubuntu Desktop installation.
 
 ### Full Installation
 
