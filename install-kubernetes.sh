@@ -59,7 +59,7 @@ install_kops() {
     printf "${YELLOW}kind could not be installed because go command is not found${NORMAL}\n"
   fi
   # Create docker network for KIND
-  docker network create --driver=bridge --subnet=172.18.0.0/16 --ip-range=172.18.0.0/24 --gateway=172.18.0.1 kind
+  docker network create --driver=bridge --subnet=172.18.0.0/16 --ip-range=172.18.0.0/24 --gateway=172.18.0.1 kind || true
 }
 
 # Check if reboot is needed
