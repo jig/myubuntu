@@ -36,8 +36,8 @@ install_kops() {
 
   # helm
   printf "${BLUE}Installing helm...${NORMAL}\n"
-  wget https://get.helm.sh/helm-v3.0.2-linux-amd64.tar.gz
-  tar -zxvf helm-v3.0.2-linux-amd64.tar.gz -C /tmp
+  wget https://get.helm.sh/helm-v3.2.1-linux-amd64.tar.gz
+  tar -zxvf helm-v3.2.1-linux-amd64.tar.gz -C /tmp
   sudo mv /tmp/linux-amd64/helm /usr/local/bin/helm
   sudo chmod +x /usr/local/bin/helm
 
@@ -52,12 +52,14 @@ install_kops() {
   # We use the go command this way, because if installed with another scripts,
   # it may not be in the PATH yet
   if which go; then
-    GO111MODULE="on" go get sigs.k8s.io/kind@v0.5.1
+    GO111MODULE="on" go get sigs.k8s.io/kind@v0.8.1
   elif ls $HOME/go/bin/go > /dev/null; then
-    GO111MODULE="on" $HOME/go/bin/go get sigs.k8s.io/kind@v0.5.1
+    GO111MODULE="on" $HOME/go/bin/go get sigs.k8s.io/kind@v0.8.1
   else
     printf "${YELLOW}kind could not be installed because go command is not found${NORMAL}\n"
   fi
+  # Create docker network for KIND
+  docker network create --driver=bridge --subnet=172.18.0.0/16 --ip-range=172.18.0.0/24 --gateway=172.18.0.1 kind || true
 }
 
 # Check if reboot is needed
