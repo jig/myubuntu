@@ -49,17 +49,14 @@ install_kops() {
   # kind
   # this requires go
   printf "${BLUE}Installing kind (kubernetes in docker)...${NORMAL}\n"
-  # We use the go command this way, because if installed with another scripts,
-  # it may not be in the PATH yet
   if which go; then
-    GO111MODULE="on" go get sigs.k8s.io/kind@v0.8.1
-  elif ls $HOME/go/bin/go > /dev/null; then
-    GO111MODULE="on" $HOME/go/bin/go get sigs.k8s.io/kind@v0.8.1
+    curl -Lo $(go env GOPATH)/bin/kind "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64"
+    chmod +x $(go env GOPATH)/bin/kind
+    # Create docker network for KIND
+    docker network create --driver=bridge --subnet=172.18.0.0/16 --ip-range=172.18.0.0/24 --gateway=172.18.0.1 kind || true
   else
     printf "${YELLOW}kind could not be installed because go command is not found${NORMAL}\n"
   fi
-  # Create docker network for KIND
-  docker network create --driver=bridge --subnet=172.18.0.0/16 --ip-range=172.18.0.0/24 --gateway=172.18.0.1 kind || true
 }
 
 # Check if reboot is needed
