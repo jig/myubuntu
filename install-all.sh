@@ -51,6 +51,7 @@ everything() {
   [ -e $HOME/.bashrc ] && . $HOME/.bashrc
 
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-awscli.sh -O -)"
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-awsadfs.sh -O -)"
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-kubernetes.sh -O -)"
   
   # Ruby+Panoràmix
