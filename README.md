@@ -6,6 +6,10 @@ To execute it, you must login with your username (must be sudoer) to a **clean**
 
 ### Full Installation
 
+First, log in with your username (`sudo` will be used internally so expect to be requested your password once. You can avoid it, by using `sudo ls` before executing the commands below).
+
+Do not execute this scripts as `root` or with `sudo`.
+
 This Ubuntu config is installed by running one of the following commands in your terminal as the main user of this desktop. 
 You can install this via the command-line with `wget`. 
 
