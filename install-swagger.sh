@@ -32,8 +32,9 @@ install_swagger() {
   VERSION=v0.21.0
 
   export download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/tags/${VERSION} | jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_amd64")) | .browser_download_url')
-  curl -o /usr/local/bin/swagger -L'#' "$download_url"
-  chmod +x /usr/local/bin/swagger 
+  curl -o /tmp/swagger -L'#' "$download_url"
+  sudo mv /tmp/swagger /usr/local/bin/swagger
+  sudo chmod +x /usr/local/bin/swagger 
 
   swagger version
 }
