@@ -25,10 +25,10 @@ install_awsadfs() {
   printf "${BLUE}Installing aws-adfs...${NORMAL}\n"
 
   sudo apt-get -y install python3.6 python3-pip libkrb5-dev
-  pip3 install -U pyopenssl
-  pip3 install aws-adfs
+  sudo pip3 install -U pyopenssl
+  sudo pip3 install aws-adfs
 
-  .local/bin/aws-adfs --version
+  aws-adfs --version
 }
 
 install_awsadfs
