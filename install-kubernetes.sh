@@ -24,6 +24,14 @@ install_kops() {
   # which may fail on systems lacking tput or terminfo
   set -e
  
+  fatal() {
+      printf "${RED}$@${NORMAL}\n" >&2 && exit 1
+  }
+
+  # Check dependencies first
+  which go >/dev/null 2>&1 || fatal "kind cannot not be installed because go command is not found."
+  which docker >/dev/null 2>&1 || fatal "kind cannot not be installed because docker command is not found."
+
   ###################################
   # kubectl
   printf "${BLUE}Installing kubectl...${NORMAL}\n"
@@ -31,8 +39,12 @@ install_kops() {
   curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
   chmod +x ./kubectl
   sudo mv ./kubectl /usr/local/bin/kubectl
-  echo "source <(kubectl completion bash)" >> ~/.bashrc
-  echo "source <(kubectl completion zsh)" >> ~/.zshrc  
+  if [ -e $HOME/.bashrc ]; then
+    grep -qxF "source <(kubectl completion bash)" $HOME/.bashrc || echo "source <(kubectl completion bash)" >> $HOME/.bashrc
+  fi
+  if [ -e $HOME/.zshrc ]; then
+    grep -qxF "source <(kubectl completion zsh)" $HOME/.zshrc || echo "source <(kubectl completion zsh)" >> $HOME/.zshrc
+  fi
 
   # helm
   printf "${BLUE}Installing helm...${NORMAL}\n"
@@ -47,16 +59,12 @@ install_kops() {
   sudo mv /tmp/eksctl /usr/local/bin
 
   # kind
-  # this requires go
+  # This requires go and docker
   printf "${BLUE}Installing kind (kubernetes in docker)...${NORMAL}\n"
-  if which go; then
-    curl -Lo $(go env GOPATH)/bin/kind "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64"
-    chmod +x $(go env GOPATH)/bin/kind
-    # Create docker network for KIND
-    docker network create --driver=bridge --subnet=172.18.0.0/16 --ip-range=172.18.0.0/24 --gateway=172.18.0.1 kind || true
-  else
-    printf "${YELLOW}kind could not be installed because go command is not found${NORMAL}\n"
-  fi
+  curl -Lo $(go env GOPATH)/bin/kind "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64"
+  chmod +x $(go env GOPATH)/bin/kind
+  # Create docker network for KIND
+  docker network create --driver=bridge --subnet=172.18.0.0/16 --ip-range=172.18.0.0/24 --gateway=172.18.0.1 kind || true
 }
 
 # Check if reboot is needed

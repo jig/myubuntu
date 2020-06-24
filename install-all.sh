@@ -48,8 +48,11 @@ everything() {
   # Golang
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-golang.sh -O -)"
   # -- Make the changes done in .bashrc (specially GOPATH) available to the rest of scripts
-  [ -e $HOME/.bashrc ] && . $HOME/.bashrc
+  [ -e $HOME/.bashrc ] && source $HOME/.bashrc
 
+  # Docker, Docker Compose, Docker Machine
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-docker.sh -O -)"
+  
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-awscli.sh -O -)"
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-awsadfs.sh -O -)"
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-kubernetes.sh -O -)"
@@ -61,9 +64,6 @@ everything() {
 
   # nodejs
   # bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-nodejs.sh -O -)"
-  
-  # Docker, Docker Compose, Docker Machine
-  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-docker.sh -O -)"
   
   # Java
   # bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-java.sh -O -)"
