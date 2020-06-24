@@ -24,10 +24,10 @@ install_swagger() {
 
   printf "${BLUE}Installing Pandoc...${NORMAL}\n"
 
-  apt-get update 
-  apt install jq pandoc -y
+  sudo apt-get update 
+  sudo apt install jq pandoc -y
 
-  printf "${BLUE}Installing Swagger...${NORMAL}\n"
+  printf "${BLUE}Installing go-swagger...${NORMAL}\n"
 
   VERSION=v0.21.0
 
