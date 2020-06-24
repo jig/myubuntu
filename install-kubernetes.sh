@@ -64,7 +64,7 @@ install_kops() {
   curl -Lo $(go env GOPATH)/bin/kind "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64"
   chmod +x $(go env GOPATH)/bin/kind
   # Create docker network for KIND
-  docker network create --driver=bridge --subnet=172.18.0.0/16 --ip-range=172.18.0.0/24 --gateway=172.18.0.1 kind || true
+  sudo docker network create --driver=bridge --subnet=172.18.0.0/16 --ip-range=172.18.0.0/24 --gateway=172.18.0.1 kind || true
 }
 
 # Check if reboot is needed
