@@ -28,7 +28,7 @@ install_awsadfs() {
   pip3 install -U pyopenssl
   pip3 install aws-adfs
 
-  aws-adfs --version
+  .local/bin/aws-adfs --version
 }
 
 install_awsadfs
