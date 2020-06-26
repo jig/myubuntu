@@ -31,9 +31,10 @@ everything() {
   # Install begins
   
   if [ -z ${BRANCH} ]; then 
-    BRANCH=master 
+    BRANCH=master
+    printf "${YELLOW}Using alternative branch ${BRANCH}.${NORMAL}\n"
   fi
-  
+
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-distroupdate.sh -O -)"
   
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-basepackages.sh -O -)"
