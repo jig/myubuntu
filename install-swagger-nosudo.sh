@@ -24,8 +24,8 @@ install_swagger_nosudo() {
 
   printf "${BLUE}Installing Pandoc...${NORMAL}\n"
 
-  sudo apt-get update 
-  sudo apt install jq pandoc -y
+  apt-get update 
+  apt install jq pandoc -y
 
   printf "${BLUE}Installing go-swagger...${NORMAL}\n"
 
