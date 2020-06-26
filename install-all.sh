@@ -96,6 +96,9 @@ everything() {
 
   # Final recommendations
   printf "${YELLOW}Installation finished. A REBOOT is recommended now.${NORMAL}\n"
+  printf "${YELLOW}The system will reboot in 30 s${NORMAL}\n"
+  sleep 30s
+  sudo reboot
 }
 
 everything
