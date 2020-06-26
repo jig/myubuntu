@@ -24,14 +24,6 @@ install_kops() {
   # which may fail on systems lacking tput or terminfo
   set -e
  
-  fatal() {
-      printf "${RED}$@${NORMAL}\n" >&2 && exit 1
-  }
-
-  # Check dependencies first
-  which go >/dev/null 2>&1 || fatal "kind cannot not be installed because go command is not found."
-  which docker >/dev/null 2>&1 || fatal "kind cannot not be installed because docker command is not found."
-
   ###################################
   # kubectl
   printf "${BLUE}Installing kubectl...${NORMAL}\n"
