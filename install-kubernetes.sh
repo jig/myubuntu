@@ -53,8 +53,13 @@ install_kops() {
   # kind
   # This requires go and docker
   printf "${BLUE}Installing kind (kubernetes in docker)...${NORMAL}\n"
-  curl -Lo ~/go/bin/kind "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64"
-  chmod +x ~/go/bin/kind
+  if [ -z "$GOPATH" ]; then
+    curl -Lo ~/go/bin/kind "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64"
+    chmod +x ~/go/bin/kind
+  else
+    curl -Lo $GOPATH/bin/kind "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64"
+    chmod +x $GOPATH/bin/kind
+  fi
   # Create docker network for KIND
   sudo docker network create --driver=bridge --subnet=172.18.0.0/16 --ip-range=172.18.0.0/24 --gateway=172.18.0.1 kind || true
 }
