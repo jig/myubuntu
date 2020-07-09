@@ -24,13 +24,23 @@ install_kops() {
   # which may fail on systems lacking tput or terminfo
   set -e
  
+  SUDO=''
+  if (( $EUID != 0 )); then
+      SUDO='sudo'
+  fi
+ 
   ###################################
   # kubectl
   printf "${BLUE}Installing kubectl...${NORMAL}\n"
-  sudo apt-get -y install curl
+  if [ -x /usr/bin/apt-get ]; then 
+    $SUDO apt-get -y install curl
+  fi
+  if [ -x /usr/bin/yum ]; then 
+    $SUDO yum -y install curl
+  fi
   curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
   chmod +x ./kubectl
-  sudo mv ./kubectl /usr/local/bin/kubectl
+  $SUDO mv ./kubectl /usr/local/bin/kubectl
   if [ -e $HOME/.bashrc ]; then
     grep -qxF "source <(kubectl completion bash)" $HOME/.bashrc || echo "source <(kubectl completion bash)" >> $HOME/.bashrc
   fi
@@ -40,15 +50,15 @@ install_kops() {
 
   # helm
   printf "${BLUE}Installing helm...${NORMAL}\n"
-  wget https://get.helm.sh/helm-v3.2.1-linux-amd64.tar.gz
-  tar -zxvf helm-v3.2.1-linux-amd64.tar.gz -C /tmp
-  sudo mv /tmp/linux-amd64/helm /usr/local/bin/helm
-  sudo chmod +x /usr/local/bin/helm
+  wget https://get.helm.sh/helm-v3.2.1-linux-amd64.tar.gz -O /tmp/helm.tar.gz
+  tar -zxf /tmp/helm.tar.gz -C /tmp
+  $SUDO mv /tmp/linux-amd64/helm /usr/local/bin/helm
+  $SUDO chmod +x /usr/local/bin/helm
 
   # eksctl
   printf "${BLUE}Installing eksctl...${NORMAL}\n"
   curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-  sudo mv /tmp/eksctl /usr/local/bin
+  $SUDO mv /tmp/eksctl /usr/local/bin
 
   # kind
   # This requires go and docker
@@ -61,7 +71,7 @@ install_kops() {
     chmod +x $GOPATH/bin/kind
   fi
   # Create docker network for KIND
-  sudo docker network create --driver=bridge --subnet=172.18.0.0/16 --ip-range=172.18.0.0/24 --gateway=172.18.0.1 kind || true
+  $SUDO docker network create --driver=bridge --subnet=172.18.0.0/16 --ip-range=172.18.0.0/24 --gateway=172.18.0.1 kind || true
 }
 
 # Check if reboot is needed
