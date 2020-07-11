@@ -38,6 +38,10 @@ bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/master/install-vm
 
 On Ubuntu 20.04 LTS you must skip this step as the support is already installed on the Desktop base distribution.
 
+# Hyper-V
+
+This script has been tested with Ubuntu 18.04.3 LTS Desktop on Microsoft Hyper-V.
+
 ## note
 
 `install.sh` script (was) based on [robbyrussell/oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
