@@ -1,4 +1,4 @@
-install_awsadfs() {
+install_consul() {
   # Use colors, but only if connected to a terminal, and that terminal
   # supports them.
   if which tput >/dev/null 2>&1; then
@@ -20,6 +20,8 @@ install_awsadfs() {
     NORMAL=""
   fi
 
+  # Only enable exit-on-error after the non-critical colorization stuff,
+  # which may fail on systems lacking tput or terminfo
   set -e
 
   SUDO=''
@@ -27,13 +29,14 @@ install_awsadfs() {
       SUDO='sudo'
   fi
 
-  printf "${BLUE}Installing aws-adfs...${NORMAL}\n"
+  printf "${BLUE}Installing consul...${NORMAL}\n"
+  # Install consul
+  wget https://releases.hashicorp.com/consul/1.7.3/consul_1.7.3_linux_amd64.zip -O /tmp/consul.zip
+  unzip -d /tmp /tmp/consul.zip
+  $SUDO mv /tmp/consul /usr/bin
 
-  $SUDO apt-get -y install python3.6 python3-pip libkrb5-dev
-  $SUDO pip3 install -U pyopenssl
-  $SUDO pip3 install aws-adfs
-
-  aws-adfs --version
+  # Test the installation
+  consul version
 }
 
-install_awsadfs
+install_consul
