@@ -24,11 +24,16 @@ install_vault() {
   # which may fail on systems lacking tput or terminfo
   set -e
 
+  SUDO=''
+  if (( $EUID != 0 )); then
+      SUDO='sudo'
+  fi
+
   printf "${BLUE}Installing Vault...${NORMAL}\n"
   # Install Vault
-  wget https://releases.hashicorp.com/vault/1.3.0/vault_1.3.0_linux_amd64.zip -O /tmp/vault.zip
+  wget https://releases.hashicorp.com/vault/1.4.2/vault_1.4.2_linux_amd64.zip -O /tmp/vault.zip
   unzip -d /tmp /tmp/vault.zip
-  sudo mv /tmp/vault /usr/bin
+  $SUDO mv /tmp/vault /usr/bin
 
   # Test the installation
   vault version
