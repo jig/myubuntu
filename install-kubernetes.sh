@@ -64,11 +64,13 @@ install_kubernetes() {
   # This requires go and docker
   printf "${BLUE}Installing kind (kubernetes in docker)...${NORMAL}\n"
   if [ -z "$GOPATH" ]; then
-    $SUDO curl -Lo /usr/local/bin/kind "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64"
-    chmod +x /usr/local/bin/kind
+    curl -Lo "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64"
+    chmod +x ./kind
+    $SUDO mv ./kind /usr/local/bin/kind
   else
-    $SUDO curl -Lo $GOPATH/bin/kind "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64"
-    chmod +x $GOPATH/bin/kind
+    curl -Lo "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64"
+    chmod +x ./kind
+    $SUDO mv ./kind $GOPATH/bin/kind
   fi
 }
 
