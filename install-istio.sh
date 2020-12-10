@@ -34,7 +34,7 @@ install_istio() {
   printf "${BLUE}Installing istio...${NORMAL}\n"
   curl -sL https://istio.io/downloadIstioctl | sh -
   $SUDO mv $HOME/.istioctl/bin/istioctl /usr/local/bin/istioctl
-  $SUDO chmod 777 /usr/local/bin/istioctl
+  $SUDO chmod 755 /usr/local/bin/istioctl
 }
 
 # Check if reboot is needed
