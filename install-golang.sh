@@ -69,7 +69,7 @@ golang() {
     github.com/go-delve/delve/cmd/dlv \
     github.com/zmb3/gogetdoc \
     golang.org/x/tools/gopls \
-    github.com/sqs/goreturns \
+    golang.org/x/tools/cmd/goimports \
   "
   for tool in $tools; do
     printf "${BLUE}Installing $tool...${NORMAL}\n"
