@@ -31,10 +31,10 @@ golang() {
   ###################################
   # Golang
 
-  VERSION=1.15.4
+  [ "$GOLANG_VERSION" == "" ] && GOLANG_VERSION=1.15.6
 
-  printf "${BLUE}Installing Go...${NORMAL}\n"
-  wget https://storage.googleapis.com/golang/go$VERSION.linux-amd64.tar.gz -O /tmp/golang.tgz
+  printf "${BLUE}Installing Go $GOLANG_VERSION...${NORMAL}\n"
+  wget https://storage.googleapis.com/golang/go$GOLANG_VERSION.linux-amd64.tar.gz -O /tmp/golang.tgz
   rm -rf $HOME/go
   tar -C $HOME -xzf /tmp/golang.tgz 
 
@@ -60,15 +60,24 @@ golang() {
   go env -w GOPROXY=direct
   go env -w GOSUMDB=off
 
-  # Install Delve Debugger
-  printf "${BLUE}Installing Delve Debugger...${NORMAL}\n"
-  # delve GO111MODULE=off: https://github.com/go-delve/delve/issues/1991#issuecomment-609706835
-  GO111MODULE=off go get -u github.com/go-delve/delve/cmd/dlv
+  tools=" \
+    github.com/stamblerre/gocode \
+    github.com/uudashr/gopkgs/v2/cmd/gopkgs \
+    github.com/ramya-rao-a/go-outline \
+    github.com/newhook/go-symbols \
+    golang.org/x/tools/cmd/gorename \
+    github.com/go-delve/delve/cmd/dlv \
+    github.com/zmb3/gogetdoc \
+    golang.org/x/tools/gopls \
+    github.com/sqs/goreturns \
+  "
+  for tool in $tools; do
+    printf "${BLUE}Installing $tool...${NORMAL}\n"
+    GOFLAGS= GO111MODULE=on go get $tool@latest
+  done
 
-  # Install debugging, testing, linting tools
-  printf "${BLUE}Installing some Go tools...${NORMAL}\n"
-  go get -u sourcegraph.com/sqs/goreturns
   cd $HOME
+  printf "${BLUE}Installing golangci-lint...${NORMAL}\n"
   wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.23.7
 }
 
