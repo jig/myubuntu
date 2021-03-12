@@ -50,11 +50,12 @@ everything() {
   
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-powerlinefonts.sh -O -)"
   
-  # Golang
+  # Golang + Mingw
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-golang.sh -O -)"
   # -- Make the changes done in .bashrc (specially GOPATH) available to the rest of scripts
   [ -e $HOME/.bashrc ] && source $HOME/.bashrc
-
+  bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-mingw.sh -O -)"
+  
   # Docker, Docker Compose, Docker Machine
   bash -c "$(wget https://raw.githubusercontent.com/jig/myubuntu/$BRANCH/install-docker.sh -O -)"
   
