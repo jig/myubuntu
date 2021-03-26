@@ -32,8 +32,8 @@ install_istio() {
   ###################################
   # istio
   printf "${BLUE}Installing istio...${NORMAL}\n"
-  curl -sL https://istio.io/downloadIstio | ISTIO_VERSION=1.8.2 sh -
-  cd istio-1.8.2
+  curl -sL https://istio.io/downloadIstio | ISTIO_VERSION=1.9.1 sh -
+  cd istio-1.9.1
   $SUDO mv bin/istioctl /usr/local/bin/istioctl
 }
 
