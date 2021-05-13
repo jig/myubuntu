@@ -1,3 +1,5 @@
+#!/bin/bash
+
 install_swagger_nosudo() {
   # Use colors, but only if connected to a terminal, and that terminal
   # supports them.
@@ -22,18 +24,22 @@ install_swagger_nosudo() {
 
   set -e
 
+  SUDO=''
+  if (( $EUID != 0 )); then
+      SUDO='sudo'
+  fi
+
   printf "${BLUE}Installing Pandoc...${NORMAL}\n"
 
-  apt-get update 
-  apt install jq pandoc -y
+  $SUDO apt-get update 
+  $SUDO apt install jq pandoc -y
 
-  printf "${BLUE}Installing go-swagger...${NORMAL}\n"
+  [ "$SWAGGER_VERSION" == "" ] && SWAGGER_VERSION="v0.27.0"
+  printf "${BLUE}Installing go-swagger ${SWAGGER_VERSION}...${NORMAL}\n"
 
-  VERSION=v0.21.0
-
-  export download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/tags/${VERSION} | jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_amd64")) | .browser_download_url')
+  export download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/tags/${SWAGGER_VERSION} | jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_amd64")) | .browser_download_url')
   curl -o /tmp/swagger -L'#' "$download_url"
-  mv /tmp/swagger /usr/local/bin/swagger
+  $SUDO mv /tmp/swagger /usr/local/bin/swagger
   chmod +x /usr/local/bin/swagger 
 
   swagger version
