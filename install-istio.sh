@@ -32,9 +32,9 @@ install_istio() {
   ###################################
   # istio
   printf "${BLUE}Installing istio...${NORMAL}\n"
-  curl -sL https://istio.io/downloadIstio | ISTIO_VERSION=1.9.2 sh -
-  cd istio-1.9.2
-  $SUDO mv bin/istioctl /usr/local/bin/istioctl
+  version=1.10.0
+  curl -sL https://istio.io/downloadIstio | ISTIO_VERSION=$version sh -
+  $SUDO mv istio-$version/bin/istioctl /usr/local/bin/istioctl
 }
 
 # Check if reboot is needed
