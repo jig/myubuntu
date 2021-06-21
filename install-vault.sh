@@ -31,7 +31,7 @@ install_vault() {
 
   printf "${BLUE}Installing Vault...${NORMAL}\n"
   # Install Vault
-  wget https://releases.hashicorp.com/vault/1.4.2/vault_1.4.2_linux_amd64.zip -O /tmp/vault.zip
+  wget https://releases.hashicorp.com/vault/1.7.3/vault_1.7.3_linux_amd64.zip -O /tmp/vault.zip
   unzip -d /tmp /tmp/vault.zip
   $SUDO mv /tmp/vault /usr/bin
 
